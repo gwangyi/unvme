@@ -515,7 +515,7 @@ unvme_ns_t* unvme_do_open(int pci, int nsid, int qcount, int qsize)
             FATAL("nvme_acmd_get_features number of queues failed");
         int maxqcount = (nq.nsq < nq.ncq ? nq.nsq : nq.ncq) + 1;
         if (qcount <= 0) qcount = maxqcount;
-        if (qsize <= 1) qsize = UNVME_QSIZE;
+        if (qsize <= 1) qsize = dev->nvmedev.maxqsize;
         ns->maxqcount = maxqcount;
         ns->qcount = qcount;
         ns->qsize = qsize;
